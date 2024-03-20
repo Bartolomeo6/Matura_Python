@@ -38,14 +38,37 @@ def zadanie2():
 def zadanie3():
     
     wynik3 = open("wyniki4_3.txt", "w")
+    id = 0
+    do_usuniecia = 0
+    puste = ""
+    slowo = "wakacje"
+    dlugosc = len(slowo)
     
     with open("przyklad.txt") as dane:
         for wiersz in dane:
-            z = wiersz.strip()
-            print(z)
-    
+            x = wiersz.strip()
+            for litera in x:
+                if dlugosc == id:
+                    id = 0
+                    puste = ""
+                if litera == slowo[id]:
+                    puste += slowo[id]
+                    id+=1
+                else:
+                    do_usuniecia+=1
+            if slowo != puste:
+                do_usuniecia+= len(puste)
+                if len(x) < 7:
+                    do_usuniecia = len(x)
+
+            wynik3.write(str(do_usuniecia) +"\n")
+            do_usuniecia = 0
+            id = 0
+            puste = ""
+            
     wynik3.close()
     
 print(zadanie1())
 print(zadanie2())
+print(zadanie3())
 
